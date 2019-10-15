@@ -1,0 +1,73 @@
+______________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
+
+
+   Phpredisadmin Centos7/Ubuntu On LAMP
+ ______________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+                   
+ yum clean all
+ yum install httpd
+ yum install mariadb-server
+ yum -y update
+ yum install php-mysql php-gd php-ldap php-xml php-xmlrpc php-mbstring php-mcrypt curl zlib libtool-ltdl php-pdo
+
+apt install php libapache2-mod-php
+
+apt update
+apt install php-mysql php-gd php-ldap php-xml php-xmlrpc php-mbstring php-pdo 
+apt install apache2
+apt install mysql-server
+
+vi /etc/httpd/conf.d/phpRedisAdmin.conf <<CENTOS
+
+vi /etc/apache2/sites-available/phpRedisAdmin.conf <<UBUNTU
+
+
+
+Add the following lines:
+
+<VirtualHost YOUR_SERVER_IP:80>
+ServerAdmin webmaster@yourdomain.com
+DocumentRoot "/var/www/html/phpRedisAdmin/"
+ServerName yourdomain.com
+ServerAlias www.yourdomain.com
+ErrorLog "/var/log/httpd/yourdomain.com-error_log"
+CustomLog "/var/log/httpd/yourdomain.com-access_log" combined
+
+<Directory "/var/www/html/phpRedisAdmin/">
+DirectoryIndex index.html index.php
+Options FollowSymLinks
+AllowOverride All
+Require all granted
+</Directory>
+</VirtualHost>
+
+*************************************************************************
+First, Download phpRedisAdmin using git:
+
+
+cd /var/www/html
+git clone https://github.com/ErikDubbelboer/phpRedisAdmin.git
+cd phpRedisAdmin
+git clone https://github.com/nrk/predis.git vendor
+
+
+You may also want to copy includes/config.sample.inc.php to includes/config.inc.php and edit it with your specific redis configuration:
+
+
+cp includes/config.sample.inc.php includes/config.inc.php
+
+Move the directory to the virtual host location we setup earlier:
+
+cd ~
+chown -R apache: /var/www/html/phpRedisAdmin
+
+chown -R www-data: /var/www/html/phpRedisAdmin
+
+Restart the apache service for the changes to take effects:
+
+systemctl start httpd.service
+systemctl enable httpd.service
+
+

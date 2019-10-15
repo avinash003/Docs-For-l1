@@ -1,0 +1,6 @@
+you've probably confused the netplan calendaring tool with netplan the network configuration tool
+install netplan.io not netplan
+(sudo) apt install netplan.io netplan-
+
+netplan generate; netplan try
+

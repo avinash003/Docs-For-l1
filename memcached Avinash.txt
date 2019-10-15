@@ -1,0 +1,96 @@
+port no of memcached 11211
+/etc/memcached.conf
+
+ 
+
+
+ apt-get -y update
+ 
+ apt-get -y install php-memcached memcached
+
+ apt install  
+
+ apt-get install -y php php-dev php-pear libapache2-mod-php php unzip
+
+
+ cd /var/www/
+
+ wget https://github.com/hgschmie/phpmemcacheadmin/archive/master.zip
+
+
+  unzip master.zip
+ 
+
+mv /var/www/phpmemcacheadmin-master /var/www/phpMemcachedAdmin
+
+ chmod -Rf 775 phpMemcachedAdmin/
+
+ chown -Rf www-data.www-data phpMemcachedAdmin/
+
+ cd /etc/apache2/sites-available/
+********************************************************************
+ vi /etc/apache2/sites-available/phpMemcachedAdmin.conf
+
+
+ Alias /phpMemcachedAdmin /var/www/phpMemcachedAdmin
+ Alias /phpmemcachedadmin /var/www/phpMemcachedAdmin
+
+ <Directory /var/www/phpMemcachedAdmin>
+ Order Deny,Allow
+ Deny from All
+ Allow from all granted
+ Allow from 127.0.0.1
+ </Directory>
+ <Directory /var/www/phpMemcachedAdmin>
+ AuthUserFile /etc/apache2/sites-available/.htpasswd
+ AuthName admin
+ AuthType Basic
+ require user admin
+ </Directory>
+</VirtualHost>
+
+
+
+***************************************************************
+
+htpasswd -cm /etc/apache2/sites-available/.htpasswd admin
+
+  or domain through
+
+
+ mkdir -p /var/www/qwe.com
+
+ vi /var/www/qwe.com/index.html
+
+ <VirtualHost *:80>
+    ServerAdmin root@localhost
+    ServerName www.qwe.com
+    DirectoryIndex index.html index.php
+    DocumentRoot /var/www/phpMemcachedAdmin
+
+
+ <Directory /var/www/phpMemcachedAdmin>
+ Order Deny,Allow
+ Allow from all granted
+ Allow from 127.0.0.1
+ </Directory>
+ <Directory /var/www/phpMemcachedAdmin>
+ AuthUserFile /etc/apache2/sites-available/.htpasswd
+ AuthName admin
+ AuthType Basic
+ require user admin
+ </Directory>
+
+
+ </VirtualHost>
+
+ a2ensite 
+
+
+
+
+
+
+
+
+

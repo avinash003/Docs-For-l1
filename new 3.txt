@@ -1,0 +1,83 @@
+______________________________________________________________________________________________________________         
+ 		                    GRAYLOG/ELASTICSEARCH/MONGODB
+______________________________________________________________________________________________________________				 
+
+              # apt update && upgrade
+          
+		      # apt install apache2
+			  
+			  # apt install apt-transport-https uuid-runtime pwgen openjdk-8-jre-headless
+			  
+			  # wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+			  
+			  #  echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
+			  
+			  # apt update && apt install elasticsearch
+			  
+			  # systemctl enable elasticsearch
+			  
+			  # systenctl start elasticsearch
+			  
+			  # systemctl start elasticsearch
+			  
+			  # systemctl status elasticsearch
+			  
+			  # vi /etc/elasticsearch/elasticsearch.yml
+			  
+			  # systemctl restart elasticsearch.service
+			  
+			  # apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+			  
+			  # echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+			  
+			  # apt update && apt install mongodb-org
+			  
+			  # systemctl start mongod
+			  
+			  # systemctl status mongod
+			  
+			  # wget https://packages.graylog2.org/repo/packages/graylog-2.4-repository_latest.deb
+			  
+			  # dpkg -i graylog-2.4-repository_latest.deb
+			  
+			  # apt update && apt install graylog-server
+			  
+			  #  sudo systemctl enable graylog-server.service
+			  
+			  #  pwgen -N 1 -s 96
+			  
+			  # echo -n your_password | sha256sum
+			  
+			  # vi /etc/graylog/server/server.conf
+			  
+			  # systemctl restart graylog-server.service
+			  
+			  # systemctl status graylog-server.service
+			  
+			  #  vi /etc/graylog/server/server.conf
+			  
+			  # netstat -ntl
+			  
+			  #  tail -100f /var/log/graylog-server/server.log
+			  
+			  # 
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  

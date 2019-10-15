@@ -1,0 +1,55 @@
+ Puppet CentOs
+
+nmtui
+
+vi /etc/hosts
+entry on host on both note Master and Agent
+install repo for puppet on Master Node
+
+yum -y install http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+
+yum -y install puppet-server
+
+vi /etc/puppet/puppet.conf
+
+[main]
+dns_alt_names = puppet, puppet.com
+certname = puppet
+ sudo -u puppet puppet master --no-daemonize --verbose
+Info: Creating a new SSL key for ca
+Info: Creating a new SSL certificate request for ca
+Info: Certificate Request fingerprint (SHA256): 30:6F:8E:EF:DF:18:D4:46:E6:DD:14:04:50:F9:0E:3F:B3:C5:09:21:A2:29:2C:3A:51:38:6A:AD:16:38:B5:47
+Notice: Signed certificate request for ca
+
+
+ systemctl start puppetmaster
+systemctl enable puppetmaster
+
+puppet cert list
+
+
+now on agent node
+
+
+yum -y install http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+
+yum install puppet
+
+ 
+vi /etc/puppet/puppet.conf
+
+[agent]
+server = puppet.com
+ 
+ ping puppet.com
+ 
+  puppet agent -t
+  
+  systemctl start puppet
+systemctl enable puppet
+
+
+on Master Node
+
+puppet cert sign "agent.com"
+

@@ -1,0 +1,84 @@
+
+
+How to configure Redis-Server And PhpRedisAdmin on Nginx
+
+  
+  Install nginx 
+# ufw disable
+# apt install nginx
+
+#apt-get install mysql-server
+#mysql_secure_installation
+#apt-get install php-fpm
+
+
+Create A domnain
+
+#mkdir -p /var/www/html/sa.com
+#vi /var/www/html/sa.com/index.html
+
+#vi /etc/nginx/sites-available/sa.com
+
+server {
+        listen 80;
+        listen 192.168.72.69:80;
+
+        server_name www.sa.com;
+        include snippets/phpRedisAdmin.conf;
+        root /var/www/html/sa.com;
+        index index.html index.php;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+ location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+	}
+	
+********************************************************************
+	
+	#systemctl restart nginx 
+	#systemctl restart php7.2-fmp
+	
+	
+#cd /var/www/html/
+#git clone https://github.com/ErikDubbelboer/phpRedisAdmin.git
+#cd phpRedisAdmin
+#git clone https://github.com/nrk/predis.git vendor
+#cp /var/www/html/phpRedisAdmin/includes/config.sample.inc.php config.inc.php
+
+#vi /etc/nginx/snippets/phpRedisAdmin.conf
+
+location /phpRedisAdmin {
+    root /var/www/html/;
+    index index.php index.html index.htm;
+    location ~ ^/phpRedisAdmin/(.+\.php)$ {
+        try_files $uri =404;
+        root /var/www/html/;
+        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include /etc/nginx/fastcgi_params;
+    }
+
+    location ~* ^/phpRedisAdmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+        root /var/www/html/;
+    }
+}
+
+*************************************************************************************
+
+
+#apt install redis-server
+
+#systemctl restart nginx
+#systemctl restart redis-server	
+	
+	

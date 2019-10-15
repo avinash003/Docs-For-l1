@@ -1,0 +1,74 @@
+
+______________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
+
+   Zabbix on Ubuntu
+______________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
+    
+	  Make Entry In Host File 
+
+   # vi /etc/hosts
+   
+   192.168.72.61 zabbix.server server
+   192.168.72.62 agent.zabbix  agent
+
+
+
+  # apt-get update
+  # apt-get install apache2 libapache2-mod-php
+  # apt-get install mysql-server
+  # apt-get install php php-mbstring php-gd php-xml php-bcmath php-ldap php-mysql
+______________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
+
+   Update timezone in php
+
+  # vi /etc/php/7.2/apache2/php.ini
+  # date.timezone = 'Asia/Kolkata'
+  # wget http://repo.zabbix.com/zabbix/3.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.4-1+bionic_all.deb
+
+______________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
+
+     Install Zabbix Server
+  
+   # apt-get install zabbix-server-mysql zabbix-frontend-php
+
+______________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
+
+       Create Database For Zabbix
+
+     # mysql -u root -p
+ > CREATE DATABASE zabbix CHARACTER SET utf8 collate utf8_bin;
+ > CREATE DATABASE zabbixdb;
+ > GRANT ALL on zabbixdb.* to zabbix@localhost IDENTIFIED BY 'temp';
+ > FLUSH PRIVILEGES;
+______________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
+ 
+      load the Zabbix database created
+ 
+ cd /usr/share/doc/zabbix-server-mysql
+ # zcat create.sql.gz | mysql -u root -p zabbixdb
+ 
+ Edit Zabbix Configuration File
+
+  # vi /etc/apache2/conf-enabled/zabbix.conf
+  # vi /etc/zabbix/zabbix_server.conf
+
+ "DBHost=localhost
+  DBName=zabbixdb
+  DBUser=zabbix
+  DBPassword=temp"
+______________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
+
+# service apache2 restart
+  
+# service zabbix-server restart
+
+
+
+  

@@ -1,0 +1,74 @@
+____________________________________________________________________________________________________________
+                          CONFIGURE  LEMP on CENTOS 
+____________________________________________________________________________________________________________		   
+		  # yum update
+	      #	yum install nginx
+          # yum install php-fpm
+		  # yum install mariadb-server
+		  # yum install php-fpm php-opcache php-cli php-gd php-curl php-mysql
+		  
+________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Make Directory for Domain
+
+          # mkdir -p /var/www/html/sa.com
+          #	vi 	  /var/www/html/sa.com
+		  
+		  
+  Give Permission  And Ownership To Directory
+     
+         # chmod -Rf 775 /var/www/html/sa.com
+         # chown -Rf apache.apache /var/www/html/sa.com
+________________________________________________________________________________________________________________________________________________________________________________________________________________________
+ 
+     Configure Your Domain In Etc Nginx
+
+
+         # vi /etc/nginx/conf.d/sa.com.conf
+
+
+           server {
+        listen 80:
+    
+
+        server_name www.sa.com;
+        
+        root /var/www/html/sa.com;
+        index index.html index.php;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+ location ~ \.php$ {
+        
+        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+	}		 
+_______________________________________________________________________________________________________________________________________________________________________________________________________________________
+	   
+	  
+	  
+	Test The Configuration and Restart Nginx And Php  
+	
+	      # nginx -t
+	      # systemctl enable nginx
+	      # systemctl restart nginx
+	      # systemctl restart php-fpm
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	
+	
+	
+	
+	

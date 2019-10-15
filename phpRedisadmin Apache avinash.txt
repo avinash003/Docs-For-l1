@@ -1,0 +1,68 @@
+Document For PhpRedisAdmin In Apache
+
+ apt install apache2
+ apt install redis-server
+ apt install php-mysql php-gd php-ldap php-xml php-xmlrpc php-mbstring  curl 
+ 
+ make website 
+ 
+ mkdir -p /var/www/html/mainsite.com
+ vi /var/www/html/mainsite.com/index.html
+ 
+ give permission and ownership
+ 
+ chmod -Rf 775 /var/www/html/mainsite.com
+ chown -Rf www-data:www-data /var/www/html/mainsite.com
+ 
+ configure site 
+ 
+ vi /etc/apache2/sites-available/mainsite.com.conf
+ 
+  <VirtualHost *:80>
+        ServerAdmin mainsite.com
+        ServerName www.mainsite.com
+        DirectoryIndex index.php index.html
+        DocumentRoot /var/www/html/mainsite.com
+</VirtualHost>
+
+Enable site
+
+a2ensite mainsite.com.conf
+
+apache2ctl -t
+ 
+ Now Configure Phpredisadmin
+ 
+ cd /var/www/html/
+ git clone https://github.com/ErikDubbelboer/phpRedisAdmin.git
+cd phpRedisAdmin
+git clone https://github.com/nrk/predis.git vendor
+
+
+You may also want to copy includes/config.sample.inc.php to includes/config.inc.php and edit it with your specific redis configuration:
+
+
+cp includes/config.sample.inc.php includes/config.inc.php
+
+
+chown -R www-data:www-data var/www/html/phpRedisAdmin
+  
+     Configure PhpRedisAdmin
+
+ vi /etc/apache2/sites-available/phpRedisAmin.conf
+
+
+<VirtualHost YOUR_SERVER_IP:80> or <VirtualHost *:80>
+ServerAdmin www@mainsite.com
+DocumentRoot /var/www/html/phpRedisAdmin/
+ServerName www.mainsite.com
+DirectoryIndex index.html index.php
+</VirtualHost>
+
+ systemctl restart apache2
+ 
+ go to url and typ your domain in url
+ 
+ 
+
+ 

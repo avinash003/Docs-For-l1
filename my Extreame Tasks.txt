@@ -1,0 +1,28 @@
+     - User Management
+    - Group Management
+    - Change ownership
+    - Change permissions
+    - sftp/scp/ftp/
+    - top, netstat, lsof, telnet, curl, log checks
+    LAMP & LEMP Stack
+    Percona 5.6 and 5.7 
+    Redis Server, 	 server along with redis admin & memcache admin
+    Php myadmin & wordpress installation
+    LDAP configuration
+    Backup Scripts, Manual Backups, Backup & Restore of webfiles & database
+    Cron Schedules
+    proftpd ftp service linux
+    iptables, firewalld & ufw
+    Git Group Permissions on Server
+    User Creation for git in both normal users and ldap users
+    Git Cloning, pull & push
+    Virtualization - KVM, Hyper-V, Oracle VM on linux
+    Haproxy ,
+	Squid
+    SSH key based passwordless access & rsync
+    AWS - VPC/Subnet/EC2/Security Groups/S3/ASG Refresh
+    Graylog2/Mongodb/elasticsearch
+    Zabbix/
+	Nagios Configurations
+    Operations - Cache Clear, DNS setup, subdomains setups, monitorings
+	

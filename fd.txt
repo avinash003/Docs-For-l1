@@ -1,0 +1,18 @@
+dn: uid=ldapuser,ou=people,dc=www,dc=sa,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: ldapuser
+sn: ldapuser
+userPassword: {SSHA}Zn4/E5f+Ork7WZF/alrpMuHHGufC3x0k
+loginShell: /bin/bash
+uidNumber: 2000
+gidNumber: 2000
+homeDirectory: /home/ldapuser
+
+
+
+
+teleconsole
+
+apt-get install libuser

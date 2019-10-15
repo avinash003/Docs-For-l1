@@ -1,0 +1,80 @@
+______________________________________________________________________________________________________________
+
+                               USER GROUP MANAGEMENT AND PERMISSIONS
+______________________________________________________________________________________________________________
+
+                           Creating a User >>
+						   
+						  
+                    # useradd sam   >>to add user<<
+					
+					# usermod -m sam >>  -m creates a home directory <<
+					
+					# passwd   sam   >>to give passwd to user<<
+					
+					# groupadd  mike >>To create Group<<
+					
+					
+		Create a User with Specific User ID And group ID
+					
+				# useradd -u 1015	jack >> -u to use for user id <<
+				
+				# useradd -g 1025   mind >> -g used for give unique group id<<
+				
+				
+				
+        	     Add a User to Multiple Groups
+  				
+
+				# useradd -G admins,backend,frontend sam
+	
+			
+	   Create a User with Account Expiry Date
+				
+				# 
+				
+		Change User Login Shell Of New User
+				
+			   
+                      # useradd -s /sbin/nologin team 
+		
+   
+                Change User Login Shell Of Existing User		
+
+ 
+	       	 	    # usermod -s /bin/bash team
+             
+
+	   Add a User with Specific Home Directory
+ 
+ 
+                      # usderadd -d /opt/team team
+
+
+        
+
+        
+
+
+
+
+ 
+
+
+        
+
+ 
+   
+
+
+
+
+
+
+  
+              
+				
+				 
+
+				
+			    

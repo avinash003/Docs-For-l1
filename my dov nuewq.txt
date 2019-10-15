@@ -1,0 +1,76 @@
+install nginx 
+apt install nginx
+
+ufw disable
+
+check ip on host for welcome page
+
+sudo apt-get install mysql-server
+
+mysql_secure_installation
+
+apt-get install php-fpm
+Since Nginx does not contain native PHP processing like some other web servers, we will need to install php-fpm, which stands for "fastCGI process manager"
+
+We do this on the server block level (server blocks are similar to Apache's virtual hosts). Open the default Nginx server block configuration file by typing:
+
+
+
+vi /etc/nginx/snippets/phpmyadmin.conf
+
+
+location /phpmyadmin {
+    root /usr/share/;
+    index index.php index.html index.htm;
+    location ~ ^/phpmyadmin/(.+\.php)$ {
+        try_files $uri =404;
+        root /usr/share/;
+        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include /etc/nginx/fastcgi_params;
+    }
+
+    location ~* ^/phpmyadmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+        root /usr/share/;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+ vi etc/nginx/sites-available/default or site name .com
+
+
+
+server {
+        listen 80;
+        listen 192.168.72.69:80;
+
+        server_name www.per.com;
+        include snippets/phpmyadmin.conf;
+        root /var/www/html/per.com;
+        index index.html index.php;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+ location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+
+and restart systemctl restart nginx 
+  systemctl restart php7.2-fp,
